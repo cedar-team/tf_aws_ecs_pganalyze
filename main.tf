@@ -7,7 +7,6 @@ data "aws_ecs_cluster" "ecs" {
 }
 
 data "aws_region" "current" {
-  current = true
 }
 
 data "template_file" "pganalyze" {
