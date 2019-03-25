@@ -6,9 +6,6 @@ data "aws_ecs_cluster" "ecs" {
   cluster_name = "${var.ecs_cluster}"
 }
 
-data "aws_region" "current" {
-}
-
 data "template_file" "pganalyze" {
   template = "${file("${path.module}/files/pganalyze.json")}"
 
@@ -18,9 +15,9 @@ data "template_file" "pganalyze" {
     image                 = "${var.docker_image}"
     pga_api_key           = "${var.pga_api_key}"
     aws_instance_id       = "${var.aws_instance_id}" # we can almost certainly derive this
-    aws_region            = "${data.aws_region.current.name}"
+    aws_region            = "${var.aws_region}"
     awslogs_group         = "${var.log_group}"
-    awslogs_region        = "${data.aws_region.current.name}"
+    awslogs_region        = "${var.aws_region}"
     awslogs_stream_prefix = "tf"
   }
 }

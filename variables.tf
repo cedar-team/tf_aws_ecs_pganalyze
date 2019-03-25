@@ -1,3 +1,7 @@
+variable "aws_region" {
+  description = "AWS Region"
+}
+
 variable "env" {
   description = "Environment tag (default 'dev')"
   default     = "dev"
